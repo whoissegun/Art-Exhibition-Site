@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js"></script>
+</head>
+<body>
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn}); %>
+
+    <div id="login-container" class="form-container">
+        <h1 id="login-title">Login</h1>
+        <div action="/login" method="post" id="login-form">
+            <input type="text" name="username" placeholder="Username" id="username" class="auth-input">
+            <input type="password" name="password" placeholder="Password" id="password" class="auth-input">
+            <button id="login-btn" class="btn" onclick="loginUser()">Login</button>
+            <a href="/register">Don't have an account? Register</a>
+        </div>
+    </div>
+</body>
+</html>

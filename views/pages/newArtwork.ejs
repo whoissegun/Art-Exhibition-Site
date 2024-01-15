@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Artwork</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/client.js"></script>
+</head>
+<body>
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+
+    <div id="create-artwork-container" class="form-container">
+        <h1 id="create-artwork-title">Create Artwork</h1>
+        <div >
+            <input type="text" name="title" placeholder="Title" id="title" class="auth-input">
+            <input type="text" name="description" placeholder="Description" id="description" class="auth-input">
+            <input type="text" name="image" placeholder="Image Url" id="image-url" class="auth-input">
+            <input type="text" name="category" placeholder="Category" id="category" class="auth-input">
+            <input type="text" name="medium" placeholder="Medium" id="medium" class="auth-input">
+            <input type="number" name="year" placeholder="Year Made" id="year" class="auth-input year-input">
+            <input type="text" name="tags" placeholder="Tags" id="tags" class="auth-input">
+
+            <button id="create-artwork-btn" class="btn" onclick="createArtwork()">Create Artwork</button>
+        </div>
+    </div>
+</body>
+</html>

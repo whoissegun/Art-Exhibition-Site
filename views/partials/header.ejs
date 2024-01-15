@@ -1,0 +1,35 @@
+<header>
+    <nav>
+        <ul id="nav-items">
+            <div class="left-items">
+                <li>
+                    <a href="/">
+                        <img src="/logo.png" alt="Echoes Of Art Logo" id="logo" class="left-items__logo">
+                    </a>
+                </li>
+                <li><a href="/artworks">Artworks</a></li>
+                <li><a href="/artists">Artists</a></li>
+                <li><a onclick="goToProfile()">Profile</a></li>
+            </div>
+
+            <div class="right-items">
+                
+                <form id="search-form" onsubmit="search(event)">
+                    <input type="text" name="query" placeholder="Search..." id="search-bar">
+                </form>
+                
+
+                <% if (isLoggedIn) { %>
+                    <button id="logout-btn" class="btn" onclick="logoutUser()">
+                        Logout
+                    </button>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <button id="signup-btn" class="btn" onclick="window.location.href='/register'">
+                        Sign Up
+                    </button>
+                <% } %>
+            </div>
+        </ul>
+    </nav>
+</header>

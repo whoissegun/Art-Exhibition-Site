@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js"></script>
+</head>
+<body>
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+
+    <div id="register-container" class="form-container">
+        <h1 id="register-title">Register</h1>
+        <div id="register-form">
+            <input type="text" name="username" placeholder="Username" id="username" class="auth-input">
+            <input type="password" name="password" placeholder="Password" id="password" class="auth-input">
+            <button id="register-btn" class="btn" onclick="registerUser()">Register</button>
+            <a href="/login">Already have an account? Login</a>
+        </div>
+    </div>
+</body>
+</html>

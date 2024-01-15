@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes Of Art</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js"></script>
+</head>
+<body id="home">
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+
+    <div id="hero">
+        <div id="hero-small-text">
+            <p>Over 1000+ Artworks From Artists All Over</p>
+        </div>
+        <h1 id="main-hero-text">Discover a World of Imagination: Experience the Unseen, Embrace the Unknown</h1>
+        <h2 id="sub-hero-text">Find art that you resonate with</h2>
+        <button id="hero-btn" class="btn">Explore</button>
+    </div>
+
+    <div id="artworks-carousel">
+        <% artworks.forEach(artwork => { %>
+            <%- include("../partials/artworkCard", { artwork: artwork }); %>
+        <% }); %>
+    </div>
+</body>
+</html>

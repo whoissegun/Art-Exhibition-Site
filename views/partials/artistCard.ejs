@@ -1,0 +1,8 @@
+<div class="artist-card" onclick="window.location.href = '/users/<%= artist._id %>'">
+    <div class="artist-card__img-container">
+        <img src="<%= artist.profilePic %>" alt="<%= artist.artistName %>" class="card__img">
+    </div>
+    <div class="artist-card__info">
+        <h3 class="card__title"><%= artist.username %></h3>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= workshop.title %></title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/client.js"></script>
+</head>
+<body>
+
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+
+    <h1><%= workshop.title %></h1>
+    <p>Description: <%= workshop.description %></p>
+    <p>Hosted By: <%= workshop.artist.username %></p>
+    
+    <% if (userId && userId.toString() !== workshop.artist._id.toString()) { %>
+        <% if(workshop.enrolledUsers.some(user => user._id.toString() === userId.toString())) { %>
+            <button class="btn" onclick="unEnrollInWorkshop()">Unenroll</button>
+        <% } else { %>
+            <button class="btn" onclick="enrollInWorkshop()">Enroll</button>
+        <% } %>
+    <% } %>
+
+    <h1>Enrolled Users</h1>
+    
+    <ul>
+
+        <% if(workshop.enrolledUsers.length === 0) { %>
+            <li>No users enrolled yet</li>
+        <% } %>
+
+        <% workshop.enrolledUsers.forEach(function(user) { %>
+            <li><%= user.username %></li>
+        <% }); %>
+    </ul>
+
+    
+</body>
+</html>

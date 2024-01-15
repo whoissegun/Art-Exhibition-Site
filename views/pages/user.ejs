@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.username %>'s Profile</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/client.js"></script>
+</head>
+<body>
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+
+    <section class="profile-section">
+
+        <div class="container-1">
+            <div class="profile-picture-container">
+                <img src="<%= user.profilePic %>" alt="<%= user.username %> Profile Picture" class="profile-picture">
+            </div>
+        </div>
+
+
+        <div class="container-2">
+            <header class="profile-header">
+                <h1 class="profile-username"><%= user.username %></h1>
+            
+                <div class="profile-actions">
+                    
+                    <% if(userId && userId.toString() !== user._id.toString()) { %>
+                        <%- isFollowing ? 
+                            '<button class="btn action-unfollow" onclick="unfollowUser()" title="Unfollow">Following</button>' : 
+                            '<button class="btn action-follow" onclick="followUser()" title="Follow">Follow</button>'
+                        %>
+                    <% } %>
+
+                    <% if(!userId){ %>
+                        <button class="btn action-follow" onclick="followUser()" title="Follow">Follow</button>
+                    <% } %>
+            
+                    <% if (userId && isArtist && userId.toString() === user._id.toString()) { %>
+                        <button class="btn action-create-artwork" onclick="window.location.href = '/artworks/new'" title="Create Artwork">Create Artwork</button>
+                        <button class="btn action-create-workshop" onclick="window.location.href = '/workshops/new'" title="Create Workshop">Create Workshop</button>
+                    <% } %>
+
+                    <%if (userId && isArtist && userId.toString() === user._id.toString()){ %>
+                        <button class="btn" onclick="switchAccountType()">Switch To Patron</button>
+                    <% } %>
+                    <% if (userId && !isArtist && userId.toString() === user._id.toString()) { %>
+                        <button class="btn" onclick="switchAccountType()">Switch To Artist</button>
+                    <% } %>
+                </div>
+            </header>
+            
+
+            <div class="social-stats">
+                <div class="social-stat followers">
+                    <span class="stat-count"><%= user.followers.length %></span>
+                    <span class="stat-label">Followers</span>
+                </div>
+
+                <div class="social-stat following">
+                    <span class="stat-count"><%= user.following.length %></span>
+                    <span class="stat-label">Following</span>
+                </div>
+
+                <% if (isArtist) { %>
+                    <div class="social-stat artworks">
+                        <span class="stat-count"><%= user.artworks.length %></span>
+                        <span class="stat-label">Artworks</span>
+                    </div>
+                <% } %>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <% if(userId  && userId.toString() === user._id.toString()){ %> 
+        <div id="user-notifications">
+            <p>Notifications</p>
+
+            <% if(user.notifications.length === 0) { %>
+                <p class="no-notifications">No notifications yet.</p>
+            <% } %>
+            <ul>
+                <% user.notifications.forEach(function(notification) { %>
+                    <li><a href="<%= notification.link %>"><%= notification.message %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+        
+    <% }%>   
+
+    <% if(userId && userId.toString() === user._id.toString()){ %>
+        <div id="user-following">
+            <p>Following</p>
+
+            <% if(user.following.length === 0) { %>
+                <p class="no-following">No following yet.</p>
+            <% } %>
+
+            <ul>
+                <% user.following.forEach(function(following) { %>
+                    <li><a href="/users/<%= following._id %>"><%= following.username %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+
+
+        <div id="user-reviews">
+            <p>Reviews</p>
+
+            <% if(user.reviewedArtworks.length === 0) { %>
+                <p class="no-reviews">No reviews yet.</p>
+            <% } %>
+            <ul>
+                <% user.reviewedArtworks.forEach(function(review) { %>
+                    <li><a href="/artworks/<%= review.artwork._id %>"><%= review.comment %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+
+
+        <div id="user-likes">
+            <p>Likes</p>
+
+            <% if(user.likedArtworks.length === 0) { %>
+                <p class="no-reviews">No likes yet.</p>
+            <% } %>
+            <ul>
+                <% user.likedArtworks.forEach(function(like) { %>
+                    <li><a href="/artworks/<%= like._id %>"><%= like.title %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+    
+    
+    <% if (isArtist || user.artworks.length !== 0) { %>
+        <section id="artworks-container">
+            <h2 id="artworks-title"><%= user.username %>'s Artworks</h2>
+
+            <div id="artworks">
+                <% if (user.artworks.length === 0) { %>
+                    <p class="no-artworks">No artworks yet.</p>
+                <% } %>
+
+                <% user.artworks.forEach(function(artwork) { %>
+                    <%- include("../partials/artworkCard", { artwork: artwork }); %>
+                <% }) %>
+            </div>
+        </section>
+    <% } %>
+
+    <% if (isArtist || user.workshops.length !== 0) { %>
+        <section id="workshops-container">
+            <h2 id="workshops-title"><%= user.username %>'s Workshops</h2>
+
+            <div id="workshops">
+                <% if (user.workshops.length === 0) { %>
+                    <p class="no-workshops">No workshops yet.</p>
+                <% } %>
+                
+                <ul>
+                    <% user.workshops.forEach(function(workshop) { %>
+                        <li><a href="/workshops/<%= workshop._id %>"><%= workshop.title %></a></li>
+                        
+                    <% }) %>
+                </ul>
+            </div>
+        </section>
+    <% } %>
+
+</body>
+</html>

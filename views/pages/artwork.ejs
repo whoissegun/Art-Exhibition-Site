@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= artwork.title %></title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/client.js"></script>
+</head>
+<body>
+    <%- include("../partials/header", {isLoggedIn: isLoggedIn, notifications: notifications}); %>
+    
+    <div id="artwork-page">
+
+        <div id="basicInfo">
+
+            <h1 class="artwork-page__title"><%= artwork.title %></h1>
+
+            <div class="row1">
+                <div class="avatar-and-name">
+                    <img src="<%= artwork.artist.profilePic %>" alt="<%= artwork.artist.artistName %>" class="profilePic">
+                    
+                        <div class="name-and-follow">
+                            <h5 class="artwork-page__artist"><a href="/users/<%= artwork.artist._id %>"> <%= artwork.artist.username %></a></h5>
+                            <p class="artwork-page__num-followers"><%= artwork.artist.followers.length %> followers</p>
+                        </div>
+                    
+                    
+                </div>
+
+                <% if (userId && userId.toString() !== artwork.artist._id.toString()) { %>
+                    <div class="cta">
+                        <%- hasLiked ? 
+                            '<button class="unlike-button" onclick="unlikeArtwork()" title="Unlike">♥</button>' : 
+                            '<button class="like-button" onclick="likeArtwork()" title="Like">♥</button>' 
+                        %>
+                        <%- isFollowing ? 
+                            '<button class="unfollow-button btn" onclick="unfollowUser()" title="Unfollow">Following</button>' : 
+                            '<button class="follow-button btn" onclick="followUser()" title="Follow">Follow</button>'
+                        %>
+                    </div>
+                <% } %>
+                
+                
+                
+            </div>
+            <div id="artwork-page__img-container">
+                <img src="<%= artwork.image %>" alt="<%= artwork.title %>" class="artwork-page__img">
+            </div>
+            <div id="artwork-page__info">
+                
+                <h2 class="artwork-page__artist"><a href="/users/<%= artwork.artist._id %>">By <%= artwork.artist.username %></a></h2>
+                <p class="artwork-page__description"><%= artwork.description %></p>
+                <p class="artwork-page__category">Category: <%= artwork.category %></p>
+                <p class="artwork-page__medium">Medium: <%= artwork.medium %></p>
+                <p class="artwork-page__num-reviews"><%= artwork.reviews.length %> reviews</p>
+                <p class="artwork-page__num-likes"><%= artwork.likes.length %> likes</p>
+                <p class="artwork-page__dateTime">Posted on: <%= artwork.dateTime %></p>
+                <p class="artwork-page__year">Made on: <%= artwork.year %></p>
+            </div>
+
+        </div>
+
+        <% if (userId && userId.toString() !== artwork.artist._id.toString()) { %>
+            
+            <div id="leave-a-review">
+                <h2>Leave a review</h2>
+                <div>
+                    <textarea name="review" id="review" cols="30" rows="10" placeholder="Write your review here"></textarea>
+                </div>
+                <button class="btn" id="submit-review-btn" onclick="createReview()">Submit</button>
+            </div>
+
+        <% } %>
+
+            <div id="reviews">
+                <h2>Reviews</h2>
+                <div id="reviews-container">
+                    <% if (artwork.reviews.length === 0) { %>
+                        <p>No reviews yet</p>
+                    <% } %>
+                    
+                    <% artwork.reviews.forEach(review => { %>
+                        <div class="review">
+                            <div class="review__avatar-and-name">
+                                <img src="<%= review.patron.profilePic %>" alt="<%= review.patron.username %>" class="profilePic">
+                                <h5 class="review__username"><a href="/user/<%= review.patron._id %>"><%= review.patron.username %></a></h5>
+                            </div>
+                            <p class="review__text"><%= review.comment %></p>
+
+                            <% if (review.patron._id.toString() === userId) { %>
+                                <button class="btn delete-review-btn" onclick="deleteReview('<%= review._id %>')">Delete</button>
+                            <% } %>
+                        </div>
+                    <% }); %>
+            </div>
+
+        
+    </div>
+</body>
+</html>

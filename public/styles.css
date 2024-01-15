@@ -1,0 +1,478 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #0d0c22;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#logo{
+    width: 10rem;
+}
+
+#nav-items{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+}
+
+#nav-items div{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+li{
+    list-style: none;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+a::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s;
+}
+
+a:hover::after{
+    width: 100%;
+}
+
+#home{
+    background-color: #f8f7f4;
+}
+
+#search-bar{
+    border-radius: 20px;
+    padding: 10px 7px;
+    border-width: 1.5px;
+}
+
+.btn{
+    background-color: #0d0c22;
+    color: white;
+    border-radius: 20px;
+    padding: 15px 15px;
+    border: none;
+    border-width: 2px;
+    font: bold;
+    font-size: 0.9rem;
+}
+
+.btn:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#signup-btn a{
+    color: white;
+    font: bold;
+}
+
+#main-hero-text{
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#hero-small-text{
+    font-size: 1rem;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #B5AB87;
+    padding: 5px 10px;
+    border-radius: 50px;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#hero{
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sub-hero-text{
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-family: cursive;
+}
+
+#hero-btn{
+    background-color: #0d0c22;
+    color: white;
+    border-radius: 20px;
+    padding: 15px 25px;
+    border: none;
+    border-width: 2px;
+    margin-left: 0 auto;
+}
+
+#hero-btn:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#artworks-carousel{
+    margin-top: 5rem;
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    overflow-x: scroll;
+}
+
+.artwork-card, .artist-card{
+    border-radius: 20px;
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth effect */
+    transform: translateY(0); /* Default state */
+}
+
+.artwork-card:hover, .artist-card:hover {
+    transform: translateY(-20px); /* Raise up the card on hover */
+}
+
+#artworks-carousel::-webkit-scrollbar{
+    display: none;
+}
+
+.artwork-card img, .artist-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.artwork-card__img-container, .artist-card__img-container{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.artwork-card__info, .artist-card__info{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 100%;
+    min-width: -webkit-fill-available;
+    min-width: -webkit-fill-available
+}
+
+.artwork-card__info h3, .artist-card__info h3{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form-container{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.form-container form, .form-container div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.auth-input{
+    border-radius: 20px;
+    padding: 10px 7px;
+    border-width: 1.5px;
+    width: 20rem;
+}
+
+#login-btn{
+    width: 20rem;
+}
+
+
+#artworks-container, #artists-container{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 1rem 0;
+}
+
+#artworks, #artists{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    place-items: center;
+}
+
+#artwork-page__img-container{
+    width: 70%;
+    height: 40%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#artwork-page__img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#artwork-page, #artist-page{
+    padding: 2rem;
+}
+#artwork-page #basicInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+#artwork-page__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.row1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar-and-name{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.avatar-and-name img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.unlike-button {
+    background-color: #f8e1f4; 
+    border: none; 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
+    font-size: 24px; 
+    color: #e75480; 
+    text-align: center; 
+    line-height: 50px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, 
+                box-shadow 0.3s, 
+                transform 0.3s; 
+    outline: none; 
+}
+
+.unlike-button:hover {
+    background-color: #f4c2c2; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.1); 
+}
+
+.unlike-button:focus {
+    outline: none; 
+}
+
+.like-button {
+    background-color: grey; 
+    border: none; 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
+    font-size: 24px; 
+    color: #e75480; 
+    text-align: center; 
+    line-height: 50px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, 
+                box-shadow 0.3s, 
+                transform 0.3s; 
+    outline: none; 
+}
+
+.like-button:hover {
+    background-color: grey; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.1); 
+}
+
+.like-button:focus {
+    outline: none; 
+}
+
+
+#leave-a-review{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+#leave-a-review textarea{
+    border-radius: 20px;
+    padding: 10px 7px;
+    border-width: 1.5px;
+    width: 40%
+}
+
+#reviews{
+    margin-top: 3rem;
+}
+
+#submit-review-btn{
+    width: 20%;
+}
+
+.review{
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: #f8f7f4;
+}
+
+.review__avatar-and-name{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.review__avatar-and-name img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.review__comment{
+    margin-top: 1rem;
+    font-size: large;
+    font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.delete-review-btn{
+    background-color: red;
+    margin-top: 10px;
+}
+
+.profile-section{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+}
+.profile-section .profile-picture{
+    /* width: 100px; */
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-section .container-2{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.social-stats{
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+}
+
+.profile-actions{
+    margin: 0.5rem 0;
+}
+
+
+#workshops-container{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 1rem 0;
+}
+
+.dropdown{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+/* Style for dropdown button */
+.dropbtn {
+    cursor: pointer;
+}
+
+/* Container for dropdown items */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style for dropdown items */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover or click */
+#dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: red;
+    top: 8;
+}
+
+
+#user-notifications, #user-following, #user-reviews, #user-likes{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
