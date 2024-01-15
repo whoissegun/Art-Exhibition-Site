@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongo_url = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/term_project';
+const mongo_url = process.env.MONGO_URL || 'mongodb://mongo:HDeAHAHHhB-F2CGcE316CD63ee5f-AHF@monorail.proxy.rlwy.net:30034';
 const {User, Artwork} = require('./models.js'); //import models   
 const fs = require('fs');
 const path = require('path');                      
@@ -16,7 +16,7 @@ mongoose.connect(mongo_url)
             const artistData = {
                 artistName: item.Artist,
                 username: item.Artist.toLowerCase().replace(/ /g, '_'),
-                password: 'password', // Hash the password in production
+                password: 'password',
                 following: [],
                 likedArtworks: [],
                 reviewedArtworks: [],
