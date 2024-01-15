@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
-const mongo_url = process.env.MONGO_URL || 'mongodb://mongo:HDeAHAHHhB-F2CGcE316CD63ee5f-AHF@monorail.proxy.rlwy.net:30034';
+const mongo_url = process.env.MONGO_URL
 const {User, Artwork} = require('./models.js'); //import models   
 const fs = require('fs');
 const path = require('path');                      

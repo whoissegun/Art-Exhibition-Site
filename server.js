@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
@@ -6,7 +8,7 @@ const session = require('express-session'); // Import session middleware
 
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
-const mongo_url = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/term_project"
+const mongo_url = process.env.MONGO_URL
 
 const { User, Artwork, Review, Workshop } = require('./database/models.js');
 
